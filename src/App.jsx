@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import AddTask from "./components/forms/add-task";
-import ActionTasks from "./components/forms/action-task";
+import ActionTasks from "./components/action-task";
 import { useTodo } from "./redux/features/todo/todoSlice";
 
 function App() {
