@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const initialState = []
+const initialState = JSON.parse(localStorage.getItem('todo')) || [];
 
 export const todoSlice = createSlice({
   name: "todo",
@@ -12,9 +12,9 @@ export const todoSlice = createSlice({
       ...task, text: payload.text
     } : task),
     toggleStatus: (state, { payload }) => state.map(task => task.id === payload.id ? {
-      ...task, status: !task.status
+      ...task, completed: !task.completed
     } : task),
-    delateTask: (state, { payload }) => state.filter(task => task.id === payload.id),
+    delateTask: (state, { payload }) => state.filter(task => task.id !== payload.id),
     delateAll: () => [],
   }
 })

@@ -1,22 +1,29 @@
-import { useSelector } from "react-redux"
-import { useTodo } from "../../redux/features/todo/todoSlice"
+import { useSelector, useDispatch } from "react-redux"
+import { delateTask, toggleStatus, useTodo } from "../../redux/features/todo/todoSlice"
 
 const ActionTasks = () => {
+  const dispatch = useDispatch()
   const tasks = useSelector(useTodo)
   return (
-    <div>
+    <>
       {tasks.map((task) => (
-        <div key={task.id} className={`border p-2 mt-2 `}>
-          {task.name}
-          <button className="p-2 mt-4 text-white bg-red-500 rounded">
-            Delete
+        <div key={task.id} className={`border p-2 mt-2 ${task.completed ? (task.priority === 'low' ? 'border-green-500' : task.priority === 'medium' ? 'border-yellow-500' : 'border-red-500') : ''}`}>
+          <p className={`${task.completed ? 'line-through' : ''}`}>{task.name}</p>
+          <button
+            onClick={() => dispatch(toggleStatus(task))}
+            className="p-2 mt-4 mr-2 text-white bg-green-500 rounded">
+            {task.completed ? 'Mark as incomplete' : 'Mark as complete'}
           </button>
-          <button className="p-2 mt-4 text-white bg-blue-500 rounded">
+          <button className="p-2 mt-4 mr-2 text-white bg-yellow-500 rounded">
             Edit
+          </button>
+          <button onClick={() => dispatch(delateTask(task))}
+            className="p-2 mt-4 text-white bg-red-500 rounded">
+            Delete
           </button>
         </div>
       ))}
-    </div>
+    </>
   )
 }
 

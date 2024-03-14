@@ -6,3 +6,6 @@ export const store = configureStore({
     todo: todoSlice
   }
 })
+store.subscribe(() => {
+  localStorage.setItem('todo', JSON.stringify(store.getState().todo));
+});
