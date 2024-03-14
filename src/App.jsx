@@ -2,9 +2,11 @@ import { useSelector } from "react-redux";
 import AddTask from "./components/forms/add-task";
 import ActionTasks from "./components/forms/action-task";
 import { useTodo } from "./redux/features/todo/todoSlice";
+import { useState } from "react";
 
 function App() {
   const tasks = useSelector(useTodo)
+  const [filter, setFilter] = useState("all")
   return (
     <div className="min-h-screen p-4 bg-gray-100">
       <div className="max-w-md mx-auto overflow-hidden bg-white shadow-md rounded-xl md:max-w-2xl">
@@ -16,8 +18,8 @@ function App() {
               <p>Complete Task <span>: {(tasks.filter(tasks => tasks.completed === true)).length}</span></p>
             </div>
           </div>
-          <AddTask />
-          <ActionTasks />
+          <AddTask setFilter={setFilter} />
+          {tasks.length ? <ActionTasks filter={filter} /> : <p>No task Found</p>}
         </div>
       </div>
     </div>

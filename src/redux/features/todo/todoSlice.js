@@ -18,7 +18,7 @@ export const todoSlice = createSlice({
     delateAll: () => [],
   }
 })
-export const { addTask, editTask, toggleStatus, delateTask, delateAll } = todoSlice.actions
+export const { addTask, editTask, toggleStatus, delateTask, delateAll, filterTask } = todoSlice.actions
 export default todoSlice.reducer
 
 // todo:  for selector :
