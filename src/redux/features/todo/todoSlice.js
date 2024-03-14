@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const initialState = JSON.parse(localStorage.getItem('tasks')) || []
+const initialState = []
 
 export const todoSlice = createSlice({
   name: "todo",
@@ -18,6 +18,7 @@ export const todoSlice = createSlice({
     delateAll: () => [],
   }
 })
+export const { addTask, editTask, toggleStatus, delateTask, delateAll } = todoSlice.actions
 export default todoSlice.reducer
 
 // todo:  for selector :
