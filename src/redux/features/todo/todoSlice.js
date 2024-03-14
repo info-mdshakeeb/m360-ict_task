@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const initialState = JSON.parse(localStorage.getItem('todo')) || [];
 
 export const todoSlice = createSlice({
@@ -9,7 +8,7 @@ export const todoSlice = createSlice({
   reducers: {
     addTask: (state, { payload }) => { state.push(payload) },
     editTask: (state, { payload }) => state.map(task => task.id === payload.id ? {
-      ...task, text: payload.text
+      ...task, text: payload.text, completed: false
     } : task),
     toggleStatus: (state, { payload }) => state.map(task => task.id === payload.id ? {
       ...task, completed: !task.completed

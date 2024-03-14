@@ -15,6 +15,7 @@ const AddTask = ({ setFilter }) => {
       priority: form.priority.value,
     };
     dispatch(addTask(newTask))
+    setFilter("all")
     form.reset()
   }
 

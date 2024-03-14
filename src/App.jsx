@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import AddTask from "./components/forms/add-task";
 import ActionTasks from "./components/forms/action-task";
 import { useTodo } from "./redux/features/todo/todoSlice";
-import { useState } from "react";
 
 function App() {
   const tasks = useSelector(useTodo)
   const [filter, setFilter] = useState("all")
+
   return (
     <div className="min-h-screen p-4 bg-gray-100">
       <div className="max-w-md mx-auto overflow-hidden bg-white shadow-md rounded-xl md:max-w-2xl">
@@ -25,5 +26,11 @@ function App() {
     </div>
   );
 }
-
 export default App;
+
+// * Notes
+
+/**
+ * *  don't use react-router-dom 
+ * * never use  optional chaining becaus there is no => null or undefined 
+ */

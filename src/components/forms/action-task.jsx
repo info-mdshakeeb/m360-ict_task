@@ -4,7 +4,6 @@ import { delateTask, toggleStatus, useTodo } from "../../redux/features/todo/tod
 const ActionTasks = ({ filter }) => {
   const dispatch = useDispatch()
   const tasks = useSelector(useTodo)
-  console.log(filter);
   return (
     <>
       {tasks
