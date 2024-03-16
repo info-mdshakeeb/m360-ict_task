@@ -1,29 +1,35 @@
 import { useDispatch } from 'react-redux'
 import { editTask } from '../../redux/features/todo/todoSlice'
+import { Form, Input, Button } from 'antd';
 
 const UpdateTask = ({ edit, setEdit, task }) => {
   const dispatch = useDispatch()
 
-  const handleUpdate = (e) => {
-    e.preventDefault()
-    dispatch(editTask({ ...edit, name: e.target.name.value, }))
-    setEdit({})
-  }
+  const handleUpdate = (values) => {
+    dispatch(editTask({ ...edit, name: values.name }));
+    setEdit({});
+  };
   return (
-    <form onSubmit={handleUpdate}>
-      <input
+    <Form onFinish={handleUpdate} style={{
+      display: "flex",
+      gap: "10px",
+      width: "100%",
+      marginTop: "25px",
+
+    }}>
+      <Form.Item style={{ width: "100%" }}
         name="name"
-        defaultValue={task.name}
-        required
-        type="text"
-        className="p-2 mt-4 mr-2 border"
-        placeholder="Enter task..." />
-      <button
-        type="submit"
-        className="p-2 mt-4 text-white bg-yellow-500 rounded">
-        save
-      </button>
-    </form>
+        rules={[{ required: true, message: 'Please input your task!' }]}
+        initialValue={task.name}
+      >
+        <Input placeholder="Enter task..." />
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit">
+          Save
+        </Button>
+      </Form.Item>
+    </Form>
   )
 }
 

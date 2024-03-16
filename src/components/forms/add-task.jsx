@@ -1,59 +1,66 @@
-import { useDispatch } from 'react-redux'
-import { addTask } from '../../redux/features/todo/todoSlice'
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux'
+import { Form, Input, Select, Button, Row, Col } from 'antd';
+import { addTask } from '../../redux/features/todo/todoSlice'
 
 const AddTask = ({ setFilter }) => {
   const dispatch = useDispatch()
+  const { Option } = Select;
 
-  const handleAddTodo = (e) => {
-    e.preventDefault()
-    const form = e.target
+  const handleAddTodo = (values) => {
     const newTask = {
       id: uuidv4(),
-      name: form.name.value,
+      name: values.name,
       completed: false,
-      priority: form.priority.value,
+      priority: values.priority,
     };
-    dispatch(addTask(newTask))
-    setFilter("all")
-    form.reset()
-  }
-
+    dispatch(addTask(newTask));
+    setFilter("all");
+  };
   return (
-    <form
-      onSubmit={handleAddTodo}
+    <Form
+      onFinish={handleAddTodo}
       className="justify-between mb-4 md:flex">
-      <div className="">
-        <input
-          name="name"
-          required
-          type="text"
-          className="p-2 mt-4 mr-2 border"
-          placeholder="Enter task..." />
-        <select
-          name="priority"
-          defaultValue={"low"}
-          className="p-2 mt-4 mr-2 border" >
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-        <button type="submit" className="p-2 mt-4 text-white bg-blue-500 rounded">
-          Add Task
-        </button>
-      </div>
-      <div
-        onChange={(e) => { e.stopPropagation(), setFilter(e.target.value) }}
-        className="items-center justify-center md:flex">
-        <label className="mt-4 mr-2">Filter :</label>
-        <select className="p-2 mt-4 mr-2 border" >
-          <option value="all">All</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-      </div>
-    </form>
+      <Row gutter={16}>
+        <Col>
+          <Form.Item
+            name="name"
+            rules={[{ required: true, message: 'Please input your task!' }]}>
+            <Input placeholder="Enter task..." />
+          </Form.Item>
+        </Col>
+        <Col>
+          <Form.Item
+            name="priority"
+            initialValue="low"
+          >
+            <Select>
+              <Option value="low">Low</Option>
+              <Option value="medium">Medium</Option>
+              <Option value="high">High</Option>
+            </Select>
+          </Form.Item>
+        </Col>
+        <Col>
+          <Form.Item>
+            <Button htmlType="submit">
+              Add Task
+            </Button>
+          </Form.Item>
+        </Col>
+        <Col>
+          <Form.Item name="filter" style={{ minWidth: "100px" }}>
+            <Select placeholder="Filter :" onChange={value => setFilter(value)}>
+              <Option value="all">All</Option>
+              <Option value="low">Low</Option>
+              <Option value="medium">Medium</Option>
+              <Option value="high">High</Option>
+            </Select>
+          </Form.Item>
+        </Col>
+      </Row>
+
+    </Form>
   )
 }
 export default AddTask
