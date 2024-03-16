@@ -14,8 +14,8 @@ const UpdateTask = ({ edit, setEdit, task }) => {
       display: "flex",
       gap: "10px",
       width: "100%",
-      marginTop: "25px",
-
+      paddingTop: "20px",
+      border: "1px solid #f5f5f5",
     }}>
       <Form.Item style={{ width: "100%" }}
         name="name"

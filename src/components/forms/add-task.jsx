@@ -6,7 +6,7 @@ import { addTask } from '../../redux/features/todo/todoSlice'
 const AddTask = ({ setFilter }) => {
   const dispatch = useDispatch()
   const { Option } = Select;
-
+  const [form] = Form.useForm();
   const handleAddTodo = (values) => {
     const newTask = {
       id: uuidv4(),
@@ -16,9 +16,11 @@ const AddTask = ({ setFilter }) => {
     };
     dispatch(addTask(newTask));
     setFilter("all");
+    form.resetFields();
   };
   return (
     <Form
+      form={form}
       onFinish={handleAddTodo}
       className="justify-between mb-4 md:flex">
       <Row gutter={16}>

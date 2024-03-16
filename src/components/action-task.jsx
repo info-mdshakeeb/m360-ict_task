@@ -24,6 +24,7 @@ const ActionTasks = ({ filter }) => {
           key={task.id}
           actions={[
             <Button
+              danger={task.completed}
               key={task.id}
               type="primary" onClick={() => dispatch(toggleStatus(task))}>
               {task.completed ? 'Mark as incomplete' : 'Mark as complete'}

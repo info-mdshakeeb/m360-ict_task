@@ -37,6 +37,6 @@ export default App;
 /**
  * *  don't use react-router-dom 
  * * never use  optional chaining becaus there is no => null or undefined 
- * ! i an not expert in ant design thats why first i use tailwind css after that i explore ant design and use it . I take halp form chatGpt and ant design documentation
+ * ! i an not expert in antd design thats why first i use tailwind css after that i explore antd design and use it . I take halp form chatGpt and antd design documentation
  * * usually i use tailwind css and redix-ui with the shadcn style components
  */
