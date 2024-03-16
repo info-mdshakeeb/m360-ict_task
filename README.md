@@ -12,7 +12,7 @@ This is a simple Task Manager application built with React. It allows users to a
 
 ## Implementation Details
 
-The application uses React's `useState` and `useEffect` hooks and `Redux Toolkit` for state management and side effects respectively. The tasks are stored in the local storage, so they persist across browser sessions.
+The application uses React's `useState` hooks and `Redux Toolkit` for state management and side effects respectively. The tasks are stored in the local storage, so they persist across browser sessions.
 
 ## How to Run
 
